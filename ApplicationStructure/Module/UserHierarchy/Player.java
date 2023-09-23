@@ -1,34 +1,49 @@
 package ApplicationStructure.Module.UserHierarchy;
 
 import ApplicationStructure.Module.StorageStructure.Element.PlayableToy;
-import ApplicationStructure.Module.UserHierarchy.AbstractUser.User;
 
-public class Player extends User {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
+public class Player extends Buyer{
+    private final List<String> prize;
     public Player() {
         super();
         this.reBalance();
+        this.prize = new ArrayList<>();
     }
 
-    private void reBalance(){
-        double temp = 0;
+    public int getFullAmount(){
+        int temp = 0;
         for (PlayableToy toy : stock) {
             temp += toy.getAmount();
         }
+        return temp;
+    }
+
+    private void reBalance(){
+        double temp = this.getFullAmount();
         temp = 100 / temp;
         for (PlayableToy toy : stock) {
             toy.setChance(toy.getAmount() * temp);
         }
     }
-
-    public String playAToy(){
-        PlayableToy temp = stock.get(0);
-        for (int i = 1; i < stock.size(); i++){
-            if (temp.getChance() < stock.get(i).getChance()){
-                temp = stock.get(i);
+    public String playAToy() {
+        List<String> temp = new ArrayList<>();
+        for (PlayableToy toy: stock) {
+            for (int j = 0; j < toy.getAmount(); j++){
+                temp.add(toy.getName());
             }
         }
-        stock.updateAmount(temp.getName(),temp.getAmount()-1);
+        Collections.shuffle(temp);
+        Random random = new Random();
+        String win = temp.get(random.nextInt(0, temp.size()));
+        stock.updateAmount(win);
         this.reBalance();
-        return temp.getName();
+        this.prize.add(win);
+        return win;
     }
+
 }

@@ -13,7 +13,7 @@ public abstract class Stock<T extends Product> implements Iterable<T>{
         this.data = data;
     }
     public Stock() {
-        this.data = new LinkedList<T>();
+        this.data = new LinkedList<>();
     }
 
     public void add(T item) {
@@ -27,6 +27,17 @@ public abstract class Stock<T extends Product> implements Iterable<T>{
     public void delete(String nameItem){
         this.data.removeIf(item -> item.getName().equals(nameItem));
     }
+    public void delete(String nameItem, int number){
+        for (T item : this.data) {
+            if (item.getName().equals(nameItem)){
+                item.setAmount(item.getAmount()-number);
+                if (item.getAmount() == 0){
+                    this.delete(item.getName());
+                }
+                return;
+            }
+        }
+    }
     public void updateName(String nameItem, String newName) {
         for (T item : this.data) {
             if (item.getName().equals(nameItem)){
@@ -38,8 +49,15 @@ public abstract class Stock<T extends Product> implements Iterable<T>{
         for (T item : this.data) {
             if (item.getName().equals(nameItem)){
                 item.setAmount(newAmount);
+                if (item.getAmount() == 0){
+                    this.delete(item.getName());
+                }
+                return;
             }
         }
+    }
+    public void updateAmount(String nameItem) {
+        this.delete(nameItem, 1);
     }
 
     public T get(int idx){
@@ -57,7 +75,7 @@ public abstract class Stock<T extends Product> implements Iterable<T>{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Stock<?> stock)) return false;
+        if (!(o instanceof Stock<?>)) return false;
 
         return data.equals(o);
     }

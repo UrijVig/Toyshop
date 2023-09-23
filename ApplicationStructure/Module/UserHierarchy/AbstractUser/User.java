@@ -7,11 +7,12 @@ import ApplicationStructure.Module.StorageStructure.Storage.Stock.Stock;
 
 public abstract class User{
     protected FileManager <PlayableToy> fm;
-    protected Stock<PlayableToy> stock = new GameStock();
+    protected GameStock stock;
 
     public User() {
         this.fm = new FileManager<>();
         if (!fm.importDataFromFile().isEmpty()){
+            this.stock = new GameStock();
             this.stock.merger(fm.importDataFromFile());
         }
     }

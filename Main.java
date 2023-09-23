@@ -1,3 +1,4 @@
+import ApplicationStructure.Module.UserHierarchy.Admin;
 import ApplicationStructure.Module.UserHierarchy.Player;
 
 public class Main {
@@ -9,6 +10,12 @@ public class Main {
         System.out.println(player.viewProduct());
         System.out.println("Вы получили: " + player.playAToy());
         System.out.println(player.viewProduct());
-
+        System.out.println("Вы получили: " + player.playAToy());
+        System.out.println(player.viewProduct());
+        System.out.println("Вы получили: " + player.playAToy());
+        System.out.println(player.viewProduct());
+//        Admin admin = new Admin();
+//        admin.importDataBase();
+//        System.out.println(admin.viewProduct());
     }
 }

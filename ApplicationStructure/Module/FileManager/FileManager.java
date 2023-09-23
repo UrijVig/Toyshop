@@ -23,14 +23,13 @@ public class FileManager<T extends Product> {
             System.out.println(e.getMessage());
         }
     }
-
-    public List<T> importDataFromFile(){
+    public List<T> importDataFromFile(String filename){
         List<String> data = new ArrayList<>();
         try {
             File file = new File(fileName);
             FileReader fr = new FileReader(file);
             BufferedReader reader = new BufferedReader(fr);
-            String line = "";
+            String line;
             do {
                 line = reader.readLine();
                 if (line != null) {
@@ -47,8 +46,14 @@ public class FileManager<T extends Product> {
         }
         return importData;
     }
+    public List<T> importDataFromFile(){
+        return this.importDataFromFile(this.fileName);
+    }
 
     public void exportDataToFile(List<T> data){
+        this.exportDataToFile(this.fileName,data);
+    }
+    public void exportDataToFile(String filename,List<T> data){
         List<String> exportData = new ArrayList<>();
         for (T item : data) {
             exportData.add(mapper.toInput((PlayableToy) item));
