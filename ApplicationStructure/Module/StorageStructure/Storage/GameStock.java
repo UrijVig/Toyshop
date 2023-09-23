@@ -4,6 +4,15 @@ import ApplicationStructure.Module.StorageStructure.Element.PlayableToy;
 import ApplicationStructure.Module.StorageStructure.Storage.Stock.Stock;
 
 public class GameStock extends Stock<PlayableToy> implements Comparable<GameStock>{
+    private Boolean Twist;
+
+    public Boolean getTwist() {
+        return Twist;
+    }
+
+    public void setTwist(Boolean twist) {
+        Twist = twist;
+    }
 
     public void updateChance(String nameItem, double newChance) {
         for (PlayableToy item : this.data) {

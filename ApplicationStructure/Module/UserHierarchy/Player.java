@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Player extends Buyer{
+public class Player extends Visitor{
     private final List<String> prize;
     public Player() {
         super();
@@ -41,7 +41,8 @@ public class Player extends Buyer{
         Random random = new Random();
         String win = temp.get(random.nextInt(0, temp.size()));
         stock.updateAmount(win);
-        this.reBalance();
+        if(!stock.getTwist())
+            this.reBalance();
         this.prize.add(win);
         return win;
     }
