@@ -23,7 +23,8 @@ public class FileManager<T extends Product> {
             System.out.println(e.getMessage());
         }
     }
-    public List<T> importDataFromFile(String filename){
+
+    public List<T> importDataFromFile(String filename) {
         List<String> data = new ArrayList<>();
         try {
             File file = new File(fileName);
@@ -37,7 +38,7 @@ public class FileManager<T extends Product> {
                 }
             } while (line != null);
             fr.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         List<T> importData = new LinkedList<>();
@@ -46,25 +47,27 @@ public class FileManager<T extends Product> {
         }
         return importData;
     }
-    public List<T> importDataFromFile(){
+
+    public List<T> importDataFromFile() {
         return this.importDataFromFile(this.fileName);
     }
 
-    public void exportDataToFile(List<T> data){
-        this.exportDataToFile(this.fileName,data);
+    public void exportDataToFile(List<T> data) {
+        this.exportDataToFile(this.fileName, data);
     }
-    public void exportDataToFile(String filename,List<T> data){
+
+    public void exportDataToFile(String filename, List<T> data) {
         List<String> exportData = new ArrayList<>();
         for (T item : data) {
             exportData.add(mapper.toInput((PlayableToy) item));
         }
-        try (FileWriter writer = new FileWriter(fileName, false)){
+        try (FileWriter writer = new FileWriter(fileName, false)) {
             for (String line : exportData) {
                 writer.write(line);
                 writer.append('\n');
             }
             writer.flush();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }

@@ -11,23 +11,23 @@ public class ProductMapper implements Mapper<PlayableToy> {
     }
 
     @Override
-        public PlayableToy toOutput(String s) {
-            String[] lines = s.split(",");
-            int amount;
-            if (isDigit(lines[1])) {
-                amount = Integer.parseInt(lines[1]);
-                return new PlayableToy(lines[0], amount);
-            }
-            throw new NumberFormatException("Id must be a large number");
+    public PlayableToy toOutput(String s) {
+        String[] lines = s.split(",");
+        int amount;
+        if (isDigit(lines[1])) {
+            amount = Integer.parseInt(lines[1]);
+            return new PlayableToy(lines[0], amount);
         }
+        throw new NumberFormatException("Id must be a large number");
+    }
 
-        private boolean isDigit(String s) throws NumberFormatException {
-            try {
-                Integer.parseInt(s);
-                return true;
-            } catch (NumberFormatException e) {
-                return false;
-            }
+    private boolean isDigit(String s) throws NumberFormatException {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
+}
 

@@ -2,9 +2,10 @@ package ApplicationStructure.Module.StorageStructure.Element;
 
 import ApplicationStructure.Module.StorageStructure.Element.Product.Product;
 
-public class PlayableToy extends Product{
-private int id;
-private double chance;
+public class PlayableToy extends Product {
+    private final int id;
+    private double chance;
+
     public PlayableToy(String name, int amount) {
         super(name, amount);
         this.id = Product.getIdx();
