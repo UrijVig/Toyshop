@@ -24,7 +24,7 @@ public class FileManager<T extends Product> {
         }
     }
 
-    public List<T> importDataFromFile(String filename) {
+    public List<T> importDataFromFile(String filename) throws IOException {
         List<String> data = new ArrayList<>();
         try {
             File file = new File(filename);
@@ -39,7 +39,7 @@ public class FileManager<T extends Product> {
             } while (line != null);
             fr.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException();
         }
         List<T> importData = new LinkedList<>();
         for (String line : data) {
@@ -48,15 +48,15 @@ public class FileManager<T extends Product> {
         return importData;
     }
 
-    public List<T> importDataFromFile() {
+    public List<T> importDataFromFile() throws IOException {
         return this.importDataFromFile(this.fileName);
     }
 
-    public void exportDataToFile(List<T> data) {
+    public void exportDataToFile(List<T> data) throws IOException {
         this.exportDataToFile(this.fileName, data);
     }
 
-    public void exportDataToFile(String filename, List<T> data) {
+    public void exportDataToFile(String filename, List<T> data) throws IOException {
         List<String> exportData = new ArrayList<>();
         for (T item : data) {
             exportData.add(mapper.toInput((PlayableToy) item));
@@ -68,7 +68,7 @@ public class FileManager<T extends Product> {
             }
             writer.flush();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new IOException();
         }
     }
 }

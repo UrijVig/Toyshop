@@ -4,6 +4,8 @@ import ApplicationStructure.Module.StorageStructure.Element.PlayableToy;
 import ApplicationStructure.Module.UserHierarchy.Admin;
 import ApplicationStructure.Module.UserHierarchy.Visitor;
 
+import java.io.IOException;
+
 public class AdminController extends UserController {
     private final Admin admin;
 
@@ -18,7 +20,7 @@ public class AdminController extends UserController {
 
     public void createAPosition(String namePosition, int amountPosition) {
         PlayableToy newPosition = new PlayableToy(namePosition, amountPosition);
-        newPosition.setChance(newPosition.getAmount() * this.admin.getFullAmount());
+        newPosition.setChance((double) 100 / this.admin.getFullAmount() * newPosition.getAmount());
         this.admin.addNewToy(newPosition);
     }
 
@@ -38,11 +40,11 @@ public class AdminController extends UserController {
         this.admin.removeToy(oldNamePosition);
     }
 
-    public void export(String fileName) {
+    public void export(String fileName) throws IOException {
         this.admin.exportDataBase(fileName);
     }
 
-    public void importFile(String fileName) {
+    public void importFile(String fileName) throws IOException {
         this.admin.importDataBase(fileName);
     }
 }

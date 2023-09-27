@@ -22,20 +22,20 @@ public class UserController {
             throw new RuntimeException();
         }
     }
-    public int inputInteger(Scanner scanner){
+    public int inputInteger(Scanner scanner) throws ImputNumberException {
         try {
-            return scanner.nextInt();
-        }catch (NumberFormatException e){
+            return Integer.parseInt(scanner.nextLine());
+        }catch (Exception e){
             System.out.println("Невозможно преобразовать в int" + e.getMessage());
-            throw new NumberFormatException();
+            throw new ImputNumberException(e.getMessage());
         }
     }
-    public double inputDouble(Scanner scanner){
+    public double inputDouble(Scanner scanner) throws ImputNumberException {
         try {
-            return scanner.nextDouble();
-        }catch (NumberFormatException e){
+            return Double.parseDouble(scanner.nextLine());
+        }catch (Exception e){
             System.out.println("Невозможно преобразовать в double" + e.getMessage());
-            throw new NumberFormatException();
+            throw new ImputNumberException(e.getMessage());
         }
     }
     public boolean isFound(String searchName){

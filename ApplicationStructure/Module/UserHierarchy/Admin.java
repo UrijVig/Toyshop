@@ -2,17 +2,14 @@ package ApplicationStructure.Module.UserHierarchy;
 
 import ApplicationStructure.Module.StorageStructure.Element.PlayableToy;
 import ApplicationStructure.Module.StorageStructure.Storage.GameStock;
-import ApplicationStructure.Module.UserHierarchy.AbstractUser.User;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class Admin extends Player {
-    public Admin(User user) {
-        super(user);
-    }
 
     public Admin(GameStock stock) {
         super(stock);
@@ -31,19 +28,19 @@ public class Admin extends Player {
         stock.setTwist(true);
     }
 
-    public void importDataBase(String filename) {
+    public void importDataBase(String filename) throws IOException {
         stock.merger(this.fm.importDataFromFile(filename));
     }
 
-    public void exportDataBase(String filename) {
+    public void exportDataBase(String filename) throws IOException {
         this.fm.exportDataToFile(filename, this.stock.readAll());
     }
 
-    public void importDataBase() {
+    public void importDataBase() throws IOException {
         stock.merger(this.fm.importDataFromFile());
     }
 
-    public void exportDataBase() {
+    public void exportDataBase() throws IOException {
         this.fm.exportDataToFile(this.stock.readAll());
     }
 

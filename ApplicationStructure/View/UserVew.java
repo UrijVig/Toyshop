@@ -4,13 +4,14 @@ package ApplicationStructure.View;
 import ApplicationStructure.Controller.UserController;
 import ApplicationStructure.Module.UserHierarchy.Visitor;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 
 public class UserVew {
     private final UserController userCtrl;
 
-    public UserVew() {
+    public UserVew() throws IOException {
         Visitor visitor = new Visitor();
         this.userCtrl = new UserController(visitor);
     }

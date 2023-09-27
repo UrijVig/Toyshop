@@ -2,7 +2,6 @@ package ApplicationStructure.Module.UserHierarchy;
 
 import ApplicationStructure.Module.StorageStructure.Element.PlayableToy;
 import ApplicationStructure.Module.StorageStructure.Storage.GameStock;
-import ApplicationStructure.Module.UserHierarchy.AbstractUser.User;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,20 +11,9 @@ import java.util.Random;
 public class Player extends Visitor {
     private final List<String> prize;
 
-    public Player(User user) {
-        super(user);
-        this.reBalance();
-        this.prize = new ArrayList<>();
-    }
 
     public Player(GameStock stock) {
         super(stock);
-        this.reBalance();
-        this.prize = new ArrayList<>();
-    }
-
-    public Player() {
-        super();
         this.reBalance();
         this.prize = new ArrayList<>();
     }

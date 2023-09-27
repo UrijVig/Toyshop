@@ -50,7 +50,7 @@ public class AdminView {
                                 adminCtrl.createAPosition(namePosition, amountPosition);
                                 inputflag = false;
                             } catch (Exception e) {
-                                throw new RuntimeException(e);
+                                System.out.println("Ошибка ввода! ");
                             }
                         }
                     }
@@ -88,7 +88,7 @@ public class AdminView {
                                                         adminCtrl.editAmountPosition(oldNamePosition, amountPosition);
                                                         inputNumber = false;
                                                     } catch (Exception e) {
-                                                        throw new RuntimeException(e);
+                                                        System.out.println("Ошибка ввода! ");
                                                     }
                                                 }
                                             }
@@ -101,7 +101,7 @@ public class AdminView {
                                                         adminCtrl.editChancePosition(oldNamePosition, chancePosition);
                                                         inputNumber = false;
                                                     } catch (Exception e) {
-                                                        throw new RuntimeException(e);
+                                                        System.out.println("Ошибка ввода! ");
                                                     }
                                                 }
                                             }
@@ -120,6 +120,7 @@ public class AdminView {
                                 System.out.println("Данного имени нет в списке позиций! ");
                             }
                             System.out.println("Для того чтобы закончить настройки редактирования введите: \"exit\"");
+                            System.out.println("Для того чтобы продолжить введите новое имя позиции: ");
                             action = adminCtrl.inputData(scanner);
                             if ("exit".equals(action)) {
                                 found = false;
@@ -134,7 +135,7 @@ public class AdminView {
                         while (inputflag) {
                             System.out.println("Для экспорта введите: 1");
                             System.out.println("Для импорта введите: 2");
-                            System.out.println("Для для завершения редактирования введите: \"exit\"");
+                            System.out.println("Для для завершения введите: \"exit\"");
                             action = adminCtrl.inputData(scanner);
                             try {
                                 number = Integer.parseInt(action);
@@ -144,7 +145,8 @@ public class AdminView {
                                         String fileName = adminCtrl.inputData(scanner);
                                         try {
                                             adminCtrl.export(fileName);
-                                        }catch (Exception e){
+                                            System.out.println("Успешно! ");
+                                        } catch (Exception e) {
                                             System.out.println("Не удалось експортировать файл!" + e.getMessage());
                                         }
                                     }
@@ -153,7 +155,8 @@ public class AdminView {
                                         String fileName = adminCtrl.inputData(scanner);
                                         try {
                                             adminCtrl.importFile(fileName);
-                                        }catch (Exception e){
+                                            System.out.println("Успешно! ");
+                                        } catch (Exception e) {
                                             System.out.println("Не удалось импортировать файл!" + e.getMessage());
                                         }
                                     }
