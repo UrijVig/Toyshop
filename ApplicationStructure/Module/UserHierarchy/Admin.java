@@ -28,6 +28,7 @@ public class Admin extends Player {
 
     public void updateToyChance(String name, double newChance) {
         stock.updateChance(name, newChance);
+        stock.setTwist(true);
     }
 
     public void importDataBase(String filename) {

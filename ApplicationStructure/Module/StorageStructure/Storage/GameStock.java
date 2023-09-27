@@ -3,8 +3,19 @@ package ApplicationStructure.Module.StorageStructure.Storage;
 import ApplicationStructure.Module.StorageStructure.Element.PlayableToy;
 import ApplicationStructure.Module.StorageStructure.Storage.Stock.Stock;
 
+import java.util.List;
+
 public class GameStock extends Stock<PlayableToy> implements Comparable<GameStock> {
     private Boolean Twist;
+
+    public GameStock(List<PlayableToy> data) {
+        super(data);
+        Twist = false;
+    }
+
+    public GameStock() {
+        Twist = false;
+    }
 
     public Boolean getTwist() {
         return Twist;

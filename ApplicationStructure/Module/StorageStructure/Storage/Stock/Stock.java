@@ -60,6 +60,14 @@ public abstract class Stock<T extends Product> implements Iterable<T> {
             }
         }
     }
+    public boolean search(String searchName){
+        for (T item : this.data) {
+            if (item.getName().equals(searchName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void updateAmount(String nameItem) {
         this.delete(nameItem, 1);

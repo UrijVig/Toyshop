@@ -27,7 +27,7 @@ public class FileManager<T extends Product> {
     public List<T> importDataFromFile(String filename) {
         List<String> data = new ArrayList<>();
         try {
-            File file = new File(fileName);
+            File file = new File(filename);
             FileReader fr = new FileReader(file);
             BufferedReader reader = new BufferedReader(fr);
             String line;
@@ -61,7 +61,7 @@ public class FileManager<T extends Product> {
         for (T item : data) {
             exportData.add(mapper.toInput((PlayableToy) item));
         }
-        try (FileWriter writer = new FileWriter(fileName, false)) {
+        try (FileWriter writer = new FileWriter(filename, false)) {
             for (String line : exportData) {
                 writer.write(line);
                 writer.append('\n');

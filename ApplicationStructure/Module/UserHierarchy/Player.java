@@ -54,7 +54,7 @@ public class Player extends Visitor {
     public String playAToy() {
         List<String> temp = new ArrayList<>();
         for (PlayableToy toy : stock) {
-            for (int j = 0; j < toy.getAmount(); j++) {
+            for (int j = 0; j < toy.getChance(); j++) {
                 temp.add(toy.getName());
             }
         }

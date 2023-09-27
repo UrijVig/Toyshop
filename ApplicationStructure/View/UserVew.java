@@ -9,11 +9,10 @@ import java.util.Scanner;
 
 public class UserVew {
     private final UserController userCtrl;
-    private final Visitor visitor;
 
     public UserVew() {
-        this.userCtrl = new UserController();
-        this.visitor = new Visitor();
+        Visitor visitor = new Visitor();
+        this.userCtrl = new UserController(visitor);
     }
 
     public void run() {
@@ -30,14 +29,8 @@ public class UserVew {
             try {
                 int number = Integer.parseInt(action);
                 switch (number) {
-                    case (1) -> {
-                        AdminView adminView = new AdminView(this.visitor);
-                        this.visitor.setStock(adminView.runAdminRole());
-                    }
-                    case (2) -> {
-                        PlayerView playerView = new PlayerView(this.visitor);
-                        this.visitor.setStock(playerView.runPlayerRole());
-                    }
+                    case (1) -> userCtrl.getTheAdminRole(sc);
+                    case (2) -> userCtrl.getThePlayerRole(sc);
                     default -> System.out.println("Данного числа пока нет в предложеных вариантах!");
                 }
             } catch (NumberFormatException e) {
